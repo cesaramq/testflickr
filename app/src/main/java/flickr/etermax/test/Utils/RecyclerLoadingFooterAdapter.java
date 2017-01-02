@@ -1,6 +1,7 @@
 package flickr.etermax.test.Utils;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,17 @@ public abstract class RecyclerLoadingFooterAdapter<VH extends RecyclerView.ViewH
     private static final int TYPE_FOOTER = -99;
     private LoadingFooter loadingFooter;
 
-    public RecyclerLoadingFooterAdapter(Context context) {
+    public RecyclerLoadingFooterAdapter(Context context, final RecyclerView.LayoutManager layoutManager) {
         loadingFooter = new LoadingFooter(context);
+        if (layoutManager instanceof GridLayoutManager) {
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    return position == getItemCount() - 1 ? gridLayoutManager.getSpanCount() : 1;
+                }
+            });
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/principal"
     android:orientation="vertical">
 
     <LinearLayout
@@ -36,9 +37,35 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/alto_busquedar"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            app:srcCompat="@drawable/lupa" />
+
+        <com.rey.material.widget.EditText
+            android:id="@+id/edt_busqueda"
+            style="@style/EdittextMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center_vertical"
+            android:hint="@string/buscar"
+            android:textColor="@color/blanco"
+            android:textColorHint="@color/gris_divider"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:paddingTop="3dp" />
 
 </LinearLayout>

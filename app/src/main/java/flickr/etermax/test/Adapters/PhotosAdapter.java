@@ -18,9 +18,12 @@ public class PhotosAdapter extends RecyclerLoadingFooterAdapter<RecyclerView.Vie
     private ArrayList<FlickrPhoto> data = new ArrayList<>();
     private static final int TIPO_LISTA = 1, TIPO_GRID = 2;
     private boolean grid = true;
+    private RecyclerView recyclerView;
 
-    public PhotosAdapter(Context context) {
-        super(context);
+    public PhotosAdapter(Context context, RecyclerView.LayoutManager layoutManager,
+                         RecyclerView recyclerView) {
+        super(context, layoutManager);
+        this.recyclerView = recyclerView;
     }
 
     @Override
@@ -54,10 +57,14 @@ public class PhotosAdapter extends RecyclerLoadingFooterAdapter<RecyclerView.Vie
     }
 
     public void add(ArrayList<FlickrPhoto> datos) {
+        hideLoading();
         if (!datos.isEmpty()) {
             int start = data.size();
             data.addAll(datos);
             notifyItemRangeInserted(start, datos.size());
+            if (start == 0) {
+                recyclerView.scrollToPosition(0);
+            }
         } else {
             if (data.isEmpty()) {
                 showNoData();

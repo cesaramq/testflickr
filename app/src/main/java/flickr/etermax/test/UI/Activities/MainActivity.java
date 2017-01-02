@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.rey.material.widget.ImageView;
+
 import java.util.ArrayList;
 
 import flickr.etermax.test.Adapters.PhotosAdapter;
@@ -23,6 +25,9 @@ public class MainActivity extends MyActivity implements
     private PhotosAdapter adapter;
     private RecyclerView recycler;
     private FlickrApiManager manager;
+    private GridLayoutManager gridLayoutManager;
+    private ImageView btnSwitch;
+    private LinearLayoutManager linearLayoutManager;
     private EndlessScrollRecyclerListener endlessScrollRecyclerListener;
     private static final int PER_PAGE = 15;
 
@@ -36,6 +41,7 @@ public class MainActivity extends MyActivity implements
     }
 
     private void initVars() {
+        btnSwitch = (ImageView) findViewById(R.id.btn_switch_list);
         manager = new FlickrApiManager(this);
         initRecycler();
     }
@@ -49,8 +55,9 @@ public class MainActivity extends MyActivity implements
     private void initRecycler() {
         recycler = (RecyclerView) findViewById(R.id.recycler);
         endlessScrollRecyclerListener = new EndlessScrollRecyclerListener(this, 1);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        adapter = new PhotosAdapter(this);
+        gridLayoutManager = new GridLayoutManager(this, 3);
+        linearLayoutManager = new LinearLayoutManager(this);
+        adapter = new PhotosAdapter(this, gridLayoutManager, recycler);
         recycler.setLayoutManager(gridLayoutManager);
         recycler.setAdapter(adapter);
     }
@@ -58,15 +65,17 @@ public class MainActivity extends MyActivity implements
     private void swithMode() {
         modeGrid = !modeGrid;
         if (modeGrid) {
-            recycler.setLayoutManager(new GridLayoutManager(this, 3));
+            recycler.setLayoutManager(gridLayoutManager);
+            btnSwitch.setImageResource(R.drawable.list);
         } else {
-            recycler.setLayoutManager(new LinearLayoutManager(this));
+            recycler.setLayoutManager(linearLayoutManager);
+            btnSwitch.setImageResource(R.drawable.grid);
         }
         adapter.setGrid(modeGrid);
     }
 
     private void setClicks() {
-        findViewById(R.id.btn_switch_list).setOnClickListener(new View.OnClickListener() {
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 swithMode();

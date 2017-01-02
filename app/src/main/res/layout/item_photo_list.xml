@@ -2,14 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/alto_item_list"
+    android:layout_marginBottom="8dp"
+    android:background="@color/blanco"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="3dp">
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +39,7 @@
                 android:id="@+id/txt_nombre_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -43,6 +47,7 @@
                 android:id="@+id/txt_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:textSize="16sp" />
 
         </LinearLayout>

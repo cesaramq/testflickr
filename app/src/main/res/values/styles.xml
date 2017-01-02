@@ -21,4 +21,15 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="LoadingBlanco" parent="Material.Drawable.CircularProgress">
+        <item name="cpd_strokeColor">@color/blanco</item>
+    </style>
+
+    <style name="EdittextMaterial" parent="Material.Widget.EditText.Light">
+        <item name="et_dividerColor">@drawable/edittext_color_divider</item>
+        <item name="et_dividerHeight">1dp</item>
+        <item name="et_dividerErrorColor">#FFFF0000</item>
+        <item name="et_labelEnable">false</item>
+    </style>
+
 </resources>
