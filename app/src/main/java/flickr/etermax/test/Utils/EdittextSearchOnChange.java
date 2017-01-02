@@ -3,7 +3,8 @@ package flickr.etermax.test.Utils;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.EditText;
+
+import com.rey.material.widget.EditText;
 
 /**
  * Created by César Muñoz on 05/09/16.

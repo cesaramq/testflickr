@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/principal"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -56,16 +58,24 @@
             android:layout_margin="4dp"
             android:gravity="center_vertical"
             android:hint="@string/buscar"
+            android:singleLine="true"
             android:textColor="@color/blanco"
             android:textColorHint="@color/gris_divider"
             android:textSize="16sp" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="3dp" />
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="3dp" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

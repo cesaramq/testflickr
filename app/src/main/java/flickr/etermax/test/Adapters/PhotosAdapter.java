@@ -74,8 +74,8 @@ public class PhotosAdapter extends RecyclerLoadingFooterAdapter<RecyclerView.Vie
         }
     }
 
-    public void setData(ArrayList<FlickrPhoto> data) {
-        this.data = data;
+    public void limpiar() {
+        data.clear();
         notifyDataSetChanged();
     }
 

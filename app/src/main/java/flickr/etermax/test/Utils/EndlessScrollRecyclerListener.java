@@ -8,7 +8,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
  * Created by César Muñoz on 02/08/16.
  */
 public class EndlessScrollRecyclerListener extends RecyclerView.OnScrollListener {
-    private static final int visibleThreshold = 5;
+    private static final int visibleThreshold = 2;
     private int currentPage = 0;
     private int startPage = 0;
     private boolean listenerEnabled = true;

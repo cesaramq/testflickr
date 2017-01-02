@@ -3,6 +3,8 @@ package flickr.etermax.test.Managers;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.koushikdutta.async.future.Future;
+
 import java.util.ArrayList;
 
 import flickr.etermax.test.Models.FlickrPhoto;
@@ -16,6 +18,7 @@ import flickr.etermax.test.Utils.NetUtils;
 public class FlickrApiManager {
     private Context context;
     private String apiKey;
+    private Future future;
     private static final String EXTRAS = "icon_server,description,url_s,url_m,url_l,owner_name,date_upload";
 
     public FlickrApiManager(Context context) {
@@ -33,6 +36,7 @@ public class FlickrApiManager {
 
             @Override
             public void onFinishRequest(Exception e, String response, int status) {
+                future = null;
                 processResponse(e, response, status, callback);
             }
         });
@@ -47,7 +51,7 @@ public class FlickrApiManager {
         data.set("per_page", perPage);
         data.set("page", page);
 
-        netUtils.getRequest("", data);
+        future = netUtils.getRequest("", data);
     }
 
     private void processResponse(Exception e, String response, int status,
@@ -70,6 +74,13 @@ public class FlickrApiManager {
             } else {
                 callback.onGetFlickrPhotosListError(new Error(e));
             }
+        }
+    }
+
+    public void cancelRequest() {
+        if (future != null) {
+            future.cancel();
+            future = null;
         }
     }
 
