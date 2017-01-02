@@ -16,7 +16,7 @@ import flickr.etermax.test.Utils.NetUtils;
 public class FlickrApiManager {
     private Context context;
     private String apiKey;
-    private static final String EXTRAS = "icon_server,description,url_s,url_m";
+    private static final String EXTRAS = "icon_server,description,url_s,url_m,url_l,owner_name,date_upload";
 
     public FlickrApiManager(Context context) {
         this.context = context;

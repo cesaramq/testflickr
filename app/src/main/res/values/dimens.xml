@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="alto_bar">56dp</dimen>
     <dimen name="loading_size">40dp</dimen>
+    <dimen name="ancho_btn_tab">50dp</dimen>
+    <dimen name="alto_item_list">220dp</dimen>
 </resources>

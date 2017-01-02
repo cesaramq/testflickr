@@ -1,5 +1,9 @@
 package flickr.etermax.test.Models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import flickr.etermax.test.Utils.Json;
 
 /**
@@ -8,8 +12,11 @@ import flickr.etermax.test.Utils.Json;
 public class FlickrPhoto {
     private String id;
     private String owner;
+    private String ownerName;
     private String urlSmall;
     private String urlMedium;
+    private String urlLarge;
+    private String dateUploaded;
     private String urlAvatar;
     private String title;
     private String description;
@@ -22,10 +29,18 @@ public class FlickrPhoto {
         this.jsonPhotoStr = jsonPhoto.toString();
         id = jsonPhoto.at("id").asString();
         owner = jsonPhoto.at("owner").asString();
+        ownerName = jsonPhoto.at("ownername").asString();
         setUrlsPhoto(jsonPhoto);
         setUrlAvatar(jsonPhoto);
+
         title = jsonPhoto.at("title").asString();
         description = jsonPhoto.at("description").at("_content").asString();
+    }
+
+    private void setDateUploaded(Json jsonPhoto) {
+        long dateLong = Long.parseLong(jsonPhoto.at("dateupload").asString());
+        Date date = new Date(dateLong);
+        dateUploaded = new SimpleDateFormat("MMM dd", Locale.getDefault()).format(date);
     }
 
     private void setUrlsPhoto(Json jsonPhoto) {
@@ -36,6 +51,11 @@ public class FlickrPhoto {
             urlMedium = jsonPhoto.at("url_m").asString();
         } else {
             urlMedium = urlSmall;
+        }
+        if (jsonPhoto.has("url_l") && !jsonPhoto.at("url_l").isNull()) {
+            urlLarge = jsonPhoto.at("url_l").asString();
+        } else {
+            urlLarge = urlMedium;
         }
     }
 
@@ -80,5 +100,17 @@ public class FlickrPhoto {
 
     public String getJsonPhotoStr() {
         return jsonPhotoStr;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public String getUrlLarge() {
+        return urlLarge;
+    }
+
+    public String getDateUploaded() {
+        return dateUploaded;
     }
 }
