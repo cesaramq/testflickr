@@ -64,6 +64,7 @@ public class ItemListViewHolder extends RecyclerView.ViewHolder {
             context.startActivity(i);
         } else {
             Intent i = new Intent(context, ImagenActivity.class);
+            i.putExtra(ImagenActivity.FIELD_DATA, flickrPhoto.getJsonPhotoStr());
             context.startActivity(i);
         }
     }
