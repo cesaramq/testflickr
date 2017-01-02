@@ -80,6 +80,10 @@ public class EndlessScrollRecyclerListener extends RecyclerView.OnScrollListener
         }
     }
 
+    public void setLoading(boolean loading) {
+        this.loading = loading;
+    }
+
     public void resetEndlessScrolling() {
         currentPage = startPage;
         previousTotalItemCount = 0;

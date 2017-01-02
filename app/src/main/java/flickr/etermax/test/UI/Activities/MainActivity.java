@@ -75,12 +75,14 @@ public class MainActivity extends MyActivity implements
 
     private void resetList() {
         adapter.limpiar();
+        endlessScrollRecyclerListener.setListenerEnabled(false);
         endlessScrollRecyclerListener.resetEndlessScrolling();
     }
 
     private void initRecycler() {
         recycler = (RecyclerView) findViewById(R.id.recycler);
         endlessScrollRecyclerListener = new EndlessScrollRecyclerListener(this, 1);
+        endlessScrollRecyclerListener.setListenerEnabled(false);
         recycler.addOnScrollListener(endlessScrollRecyclerListener);
         gridLayoutManager = new GridLayoutManager(this, 3);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -128,6 +130,7 @@ public class MainActivity extends MyActivity implements
     public void onGetFlickrPhotosListSuccess(ArrayList<FlickrPhoto> flickrPhotos) {
         swipeRefreshLayout.setRefreshing(false);
         adapter.add(flickrPhotos);
+        endlessScrollRecyclerListener.setListenerEnabled(true);
     }
 
     @Override

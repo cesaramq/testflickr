@@ -32,7 +32,7 @@ public class FlickrPhoto {
         ownerName = jsonPhoto.at("ownername").asString();
         setUrlsPhoto(jsonPhoto);
         setUrlAvatar(jsonPhoto);
-
+        setDateUploaded(jsonPhoto);
         title = jsonPhoto.at("title").asString();
         description = jsonPhoto.at("description").at("_content").asString();
     }
@@ -40,7 +40,12 @@ public class FlickrPhoto {
     private void setDateUploaded(Json jsonPhoto) {
         long dateLong = Long.parseLong(jsonPhoto.at("dateupload").asString());
         Date date = new Date(dateLong);
-        dateUploaded = new SimpleDateFormat("MMM dd", Locale.getDefault()).format(date);
+        dateUploaded = capitalize(new SimpleDateFormat("MMM dd", Locale.getDefault()).format(date));
+    }
+
+    private String capitalize(String str) {
+        String s1 = str.substring(0, 1).toUpperCase();
+        return s1 + str.substring(1);
     }
 
     private void setUrlsPhoto(Json jsonPhoto) {
