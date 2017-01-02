@@ -30,7 +30,8 @@ public class NetUtils {
 
     //WITH BODY:
 
-    private Future<Response<String>> wBodyRequest(String url, Json data, Json header, final String request) {
+    private Future<Response<String>> wBodyRequest(String url, Json data, Json header,
+                                                  final String request) {
         url = proccessUrl(url);
         onNetUtilsActions.onInitRequest(url);
         Utils.log("init " + request + " request to: " + url);
@@ -55,12 +56,8 @@ public class NetUtils {
         return postRequest(url, data, null);
     }
 
-    private Future<Response<String>> putRequest(String url, Json data, Json header, boolean resent) {
+    private Future<Response<String>> putRequest(String url, Json data, Json header) {
         return wBodyRequest(url, data, header, PUT);
-    }
-
-    public Future<Response<String>> putRequest(String url, Json data, Json header) {
-        return putRequest(url, data, header, false);
     }
 
     public Future<Response<String>> putRequest(String url, Json data) {
@@ -69,7 +66,8 @@ public class NetUtils {
 
     //WITHOUT BODY:
 
-    private Future<Response<String>> woBodyRequest(String url, Json data, Json headerData, final String request) {
+    private Future<Response<String>> woBodyRequest(String url, Json data, Json headerData,
+                                                   final String request) {
         url = proccessUrl(url);
         onNetUtilsActions.onInitRequest(url);
         url = getUrlWithData(url, data);
